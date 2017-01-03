@@ -48,6 +48,13 @@ ui <- bootstrapPage(
          value = round(range(mapData$Sat_2016, na.rm = TRUE), 1),
          step = 0.1
       )
+   ),
+   absolutePanel(
+      bottom = 10,
+      left = 10,
+      HTML('<a href="http://www.powertripanalytics.com/" target="_new"><span style="color:#CC0000">Power</span><span style="color:#004de6">Trip</span> 
+         <span style="color:#009933">Analytics</span></a>	 
+	      </span></span>')
    )
 )
 
@@ -63,7 +70,7 @@ server <- function(input, output, session) {
       # as the map is only drawn once
       # use non-reactive dataframe, mapData 
       leaflet(mapData) %>%
-         addTiles() %>%
+         #addTiles() %>%
          fitBounds(~min(Longitude), ~min(Latitude), 
              ~max(Longitude), ~max(Latitude))
    })
@@ -76,17 +83,27 @@ server <- function(input, output, session) {
          clearShapes() %>% 
          clearPopups() %>% 
          clearMarkers() %>%
-         addMarkers(
-            lng = ~Longitude, # note the tildes before values, required
-            lat = ~Latitude,
-            popup = ~paste(
-               Institution,
-               "<br>",
-               "Overall Satisfaction:",
-               Sat_2016,
-               "<br>"
-            )
-         )
+         addCircles(radius = ~10^Sat_2016, 
+                    weight = 1, 
+                    color = "#004de6",
+                    fillColor = "#004de6", 
+                    fillOpacity = 0.5, 
+                    popup = ~~paste(Institution, "<br>",
+                        "Overall Satisfaction:", Sat_2016, "<br>")
+         ) %>%
+         addProviderTiles("Stamen.Toner") 
+         
+         #addMarkers(
+         #   lng = ~Longitude, # note the tildes before values, required
+         #   lat = ~Latitude,
+         #   popup = ~paste(
+         #      Institution,
+         #      "<br>",
+         #      "Overall Satisfaction:",
+         #      Sat_2016,
+         #      "<br>"
+         #   )
+         #)
       
    })
    
