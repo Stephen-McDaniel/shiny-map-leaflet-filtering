@@ -1,4 +1,4 @@
-# 2017-01-03 in response to Google Groups thread by julia
+# 2017-01-03 in response to Google Groups thread by julia 
 # Response from Stephen McDaniel at PowerTrip Analytics
 #
 # Program: app.R 
