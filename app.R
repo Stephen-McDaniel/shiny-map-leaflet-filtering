@@ -14,6 +14,10 @@
 # 4) When using range sliders, it is a good practice 
 #    to show the full-range of survey values, not just the min/max data values
 #    as the endpoints
+# 5) For better visualization of the results, used circle sizing rather than 
+#    just pins, you can also click these for the popup
+# 6) Added a provider tile that makes the data popout versus the default map used by leaflet
+#    There are many provider maps to choose from, see https://leaflet-extras.github.io/leaflet-providers/preview/
 #
 # License: MIT License
 # Attribution, package authors for shiny and leaflet on CRAN.
